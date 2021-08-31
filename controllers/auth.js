@@ -28,7 +28,7 @@ const crearUsuario = async ( req, res = response ) => {
 		usuario.password = bcrypt.hashSync( password, salt );
 
 		// Se genera un token para autenticacion
-		const token = await generarJWT( usuario._id, usuario.role );
+		const token = await generarJWT( usuario._id );
 
 		// Se almacena el usuario creado
 		await usuario.save();
@@ -69,7 +69,7 @@ const login = async ( req, res = response ) => {
 		}
 
 		// Se genera un token para autenticacion
-		const token = await generarJWT( usuario._id, usuario.role );
+		const token = await generarJWT( usuario._id );
 
 		res.json({ usuario, token });
 
